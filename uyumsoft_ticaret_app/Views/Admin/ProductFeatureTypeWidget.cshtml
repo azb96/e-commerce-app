@@ -1,0 +1,39 @@
+﻿@using uyumsoft_ticaret_app.Models
+@model List<uyumsoft_ticaret_app.Models.FeatureType>
+
+
+<script src="~/Content/admin/js/jquery-1.8.3.min.js"></script>
+<script>
+ 
+        $("#types").change(function myfunction() {
+            var id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/Admin/ProductFeatureDetailWidget",
+                data: { typeID: id },
+                success: function myfunction(veri) {
+                   
+                    $("#detail").html('');
+                    $("#detail").html(veri);
+                },
+                error: function myfunction() {
+                    alert("error");
+                }
+
+            });
+        });
+ 
+</script>
+
+
+<div class="form-group">
+    <label class="col-lg-2 control-label">Özellik Tip:</label>
+    <div class="col-lg-10">
+        <select class="form-control m-bot15" id="types" name="FeatureTypeID">
+            @foreach (FeatureType type in Model)
+            {
+                <option value="@type.id">@type.FeatureTypeName</option>
+            }
+        </select>
+    </div>
+</div>

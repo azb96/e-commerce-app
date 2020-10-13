@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Nitelik Detay";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+@using uyumsoft_ticaret_app.Models;
+@model List<uyumsoft_ticaret_app.Models.FeatureDetail>
+
+<br />
+<br />
+<br />
+<section class="panel">
+    <header class="panel-heading">
+        Nitelik Detayları
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/AddFeatureDetail" class="btn btn-success">
+                        Yeni Nitelik Detay <i class="icon-plus"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group pull-right">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Tools <i class="icon-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="#">Print</a></li>
+                        <li><a href="#">Save as PDF</a></li>
+                        <li><a href="#">Export to Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Nitelik Detay Adı</th>
+                        <th>Nitelik Detay Açıklaması</th>
+                        <th>Nitelik Tipi</th>
+                        <th>Kategori</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (FeatureDetail detail in Model)
+                    {
+                        <tr class="">
+                            <td>@detail.FeatureDetailName</td>
+                            <td>@detail.Detail</td>
+
+                            @if (detail.FeatureType != null)
+                            {
+                                <td>@detail.FeatureType.FeatureTypeName</td>
+                            
+                            }
+
+                            <td>
+                                @detail.FeatureType.Category.CategoryName
+                            </td>
+
+                            <td>
+                                <a class="edit" href="/Admin/EditFeatureDetail/@detail.id">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a class="delete" href="/Admin/DeleteFeatureDetail/@detail.id">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="edit" href="#">
+                                    <i class="icon-add"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+

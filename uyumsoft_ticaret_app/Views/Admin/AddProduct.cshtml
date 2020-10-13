@@ -1,0 +1,116 @@
+﻿
+@model uyumsoft_ticaret_app.ViewModel.ProductViewModel
+
+@{
+    ViewBag.Title = "Ürün";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@section head{
+
+    <link rel="stylesheet" type="text/css" src="/Content/admin/assets/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" src="/Content/admin/assets/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" src="/Content/admin/assets/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" src="/Content/admin/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" src="/Content/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+
+}
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Ürün Ekle
+            </header>
+            <div class="panel-body">
+                <form role="form" action="/Admin/AddProduct" method="post" class="form-horizontal tasi-form">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ürün Adı</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="f-name" class="form-control" name="ProductName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ürün Açıklaması</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="l-name" class="form-control" name="Detail">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Fiyat</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="spinner-input form-control" name="Price">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Stok</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="spinner-input form-control" name="Stock">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Kategori Seçiniz :</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="CategoryID">
+                                @foreach (var category in Model.CategoryList)
+                                {
+                                    <option value="@category.id">@category.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Marka Seçiniz :</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="BrandID">
+                                @foreach (var brand in Model.BrandList)
+                                {
+                                    <option value="@brand.id">@brand.BrandName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Satıcı Seçiniz :</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="SalesmanID">
+                                @foreach (var salesman in Model.SalesmanList)
+                                {
+                                    <option value="@salesman.id">@salesman.Username</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <script type="text/javascript" src="/Content/admin/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="/Content/admin/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="/Content/admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
+        <script type="text/javascript" src="/Content/admin/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script type="text/javascript" src="/Content/admin/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+    </div>
+</div>

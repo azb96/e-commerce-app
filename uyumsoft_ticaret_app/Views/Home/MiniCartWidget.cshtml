@@ -1,0 +1,91 @@
+﻿@model uyumsoft_ticaret_app.App_Classes.Basket
+    <script src="~/Content/ecommerce/js/jquery-1.10.0.min.js"></script>
+    <script>
+        $(document).ready(function myfunction() {
+            $(".DeleteProduct").click(function deleteProduct() {
+
+                var ID = $(this).attr("name");
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/CartProductDropOne",
+                    data: { id: ID },
+                    success: function myfunction() {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Home/MiniCartWidget",
+                            success: function myfunction(data) {
+                                $(".cart-all").html('');
+                                $(".cart-all").html(data);
+                            }
+                        });
+                    },
+                    error: function myfunction() {
+                        
+                    }
+                });
+            });
+        }); 
+
+    </script>
+
+
+    <div class="cart-all">
+        <i class="icon-19" title="19"></i>
+        @if (Model != null)
+        {
+            @Model.TotalCost.ToString("C2");
+
+        }
+        else
+        {
+            <span>0 ₺</span>
+        }
+
+        <div class="inside-cart">
+            <p>
+                @if (Model != null)
+                {
+                    <span>Sepetteki Ürün Sayısı : @Model.ProductsList.Sum(x => x.Quantity)</span>
+                    <a href="/Home/CartCheckout/">Sepete Git</a>
+                }
+                else
+                {
+                    <span>Sepetteki Ürün Sayısı : 0</span>
+                }
+            </p>
+            <ul>
+
+                @if (Model != null)
+                {
+                    
+                    foreach (var item in Model.ProductsList)
+                    {
+                        <li>
+                            <div class="inside-cart-image">
+                                @if (item.Product.Pictures != null)
+                                {
+                                    <img src="@item.Product.Pictures.FirstOrDefault(x=>x.isThere == true).MiddleImg" alt="product name" />
+                                }
+                            </div>
+
+                            <a class="DeleteProduct" name="@item.Product.id">x</a>
+
+                            <a href="/Home/ProductDetail/@item.Product.ProductName">@item.Product.ProductName</a>
+                            <p>Tutar : @item.TotalPrice.ToString("C2")</p>
+                            <p>Adet : @item.Quantity</p>
+
+
+                        </li>
+                    }
+
+
+
+
+
+
+                }
+
+            </ul>
+        </div>
+    </div>

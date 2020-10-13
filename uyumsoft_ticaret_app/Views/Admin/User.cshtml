@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Kullanıcı";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using uyumsoft_ticaret_app.Models
+@model List<UserRecord>
+
+<br />
+<br />
+<br />
+<section class="panel">
+    <header class="panel-heading">
+        Kullanıcılar
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/AddUser" class="btn btn-success">
+                        Yeni Kullanıcı <i class="icon-plus"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group pull-right">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Tools <i class="icon-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="#">Print</a></li>
+                        <li><a href="#">Save as PDF</a></li>
+                        <li><a href="#">Export to Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Adı</th>
+                        <th>Soyadı</th>
+                        <th>Kullanıcı Adı</th>
+                        <th>Email</th>
+                        <th>Telefon</th>
+                        <th>Rolü</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserRecord user in Model)
+                    {
+                        <tr class="">
+                            <td>@user.Firstname</td>
+                            <td>@user.Lastname</td>
+                            <td>@user.Username</td>
+                            <td>@user.Email</td>
+                            <td>@user.Telephone</td>
+                            <td>@user.RoleRecord.RoleName</td>
+
+                            <td>
+                                <a class="edit" href="/Admin/EditUser/@user.id">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="delete" href="/Admin/DeleteUser/@user.id">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+

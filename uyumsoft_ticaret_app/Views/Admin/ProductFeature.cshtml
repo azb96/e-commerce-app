@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "ProductFeature";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<uyumsoft_ticaret_app.Models.Product_Feature>
+
+<br />
+<br />
+<br />
+<section class="panel">
+    <header class="panel-heading">
+        Ürün Nitelik
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/AddProductFeature" class="btn btn-success">
+                        Yeni Ürün Niteliği <i class="icon-plus"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group pull-right">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Tools <i class="icon-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="#">Print</a></li>
+                        <li><a href="#">Save as PDF</a></li>
+                        <li><a href="#">Export to Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Nitelik Tipi</th>
+                        <th>Nitelik Detayı</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var feature in Model)
+                    {
+                        <tr class="">
+                            @if (feature.Product != null)
+                            {
+                            <td>@feature.Product.ProductName</td>
+                            }
+                            @if (feature.FeatureType != null)
+                            {
+                            <td>@feature.FeatureType.FeatureTypeName</td>
+                            }
+                            @if(feature.FeatureDetail != null)
+                            {
+                            <td>@feature.FeatureDetail.FeatureDetailName</td>
+                            }
+
+
+                          
+                            <td>
+                                <a class="edit" href="#" >
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a class="delete" href='@Url.Action("DeleteProductFeature", "Admin", new {productID=@feature.ProductID, typeID = @feature.FeatureTypeID, featureID = @feature.FeatureDetailID })'>
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="edit" href="#">
+                                    <i class="icon-add"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

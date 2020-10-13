@@ -1,0 +1,66 @@
+﻿@model uyumsoft_ticaret_app.App_Classes.Basket
+@{
+    ViewBag.Title = "CartCheckout";
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container">
+            <h2>Sepet</h2>
+
+            <div class="shopping-cart">
+                <div class="shopping-cart-products">
+                    <ul class="shopping-product-detail">
+                        <li class="shopping-1">Ürün Resmi</li>
+                        <li class="shopping-2">Ürün İsmi</li>
+                        <li class="shopping-3">Açıklama</li>
+                        <li class="shopping-4">Adet</li>
+                        <li class="shopping-5">Birim Fiyat</li>
+                        <li class="shopping-6">Toplam</li>
+                    </ul>
+                    @foreach (uyumsoft_ticaret_app.App_Classes.BasketItem basketItem in Model.ProductsList)
+                    {
+                        <ul class="shopping-product-detail">
+                            <li class="shopping-1">
+                                <img src="@basketItem.Product.Pictures.FirstOrDefault(x=>x.isThere == true).MiddleImg" alt="product image" />
+                            </li>
+                            <li class="shopping-2">
+                                <a href="/Home/ProductDetail/@basketItem.Product.ProductName">@basketItem.Product.ProductName</a>
+                                
+                            </li>
+                            <li class="shopping-3">
+                                <p>@basketItem.Product.Detail</p>
+                                
+                            </li>
+                            <li class="shopping-4">
+                             
+                                <p>@basketItem.Quantity</p>
+                                
+                            </li>
+                            <li class="shopping-5">
+                                <p>@basketItem.Product.Price.ToString("C2")</p>
+                            </li>
+                            <li class="shopping-6">
+                                @basketItem.TotalPrice.ToString("C2") <button>x</button>
+                            </li>
+                        </ul>
+                    }
+                    <!-- REPEAT BY PRODUCT -->
+
+
+                </div>
+
+                <div class="row">
+                    
+                    <div class="col-md-4">
+                        <div class="checkout-total">
+                         
+                            <p>Total : @Model.TotalCost.ToString("C2")</p>
+                            <a href="/Home/Payment/" class="button-6">Ödeme Yap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

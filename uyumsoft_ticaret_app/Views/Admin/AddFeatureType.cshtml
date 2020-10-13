@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Nitelik Tip";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using uyumsoft_ticaret_app.Models
+@model List<Category>
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Nitelik Tipi Ekle
+            </header>
+            <div class="panel-body">
+                <form action="/Admin/AddFeatureType" class="form-horizontal tasi-form" enctype="multipart/form-data" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Nitelik Adı</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="FeatureTypeName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Nitelik Açıklaması</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Detail">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Kategori Seçiniz :</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="CategoryID">
+                                @foreach (Category category in Model)
+                                 {
+                                   <option value="@category.id">@category.CategoryName</option>
+                                 }
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Kaydet</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+        </section>
+    </div>
+</div>
+

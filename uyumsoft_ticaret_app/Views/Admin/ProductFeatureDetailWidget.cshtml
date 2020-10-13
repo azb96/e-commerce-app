@@ -1,0 +1,14 @@
+﻿@using uyumsoft_ticaret_app.Models
+@model List<uyumsoft_ticaret_app.Models.FeatureDetail>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Özellik Detail:</label>
+        <div class="col-lg-10">
+            <select class="form-control m-bot15" name="FeatureDetailID">
+                @foreach (FeatureDetail type in Model)
+                {
+                    <option value="@type.id">@type.FeatureDetailName</option>
+                }
+            </select>
+        </div>
+    </div>

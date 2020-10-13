@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "SalesmanProfile";
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+@model uyumsoft_ticaret_app.Models.UserRecord
+
+
+<br />
+<br />
+<br />
+<section class="panel">
+    <header class="panel-heading">
+        Satıcı Profili
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Satıcı Adı</th>
+                        <th>Satıcı Soyadı</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                        <tr class="">
+                            <td>@Model.Firstname</td>
+                            <td>@Model.Lastname</td>
+                            <td>@Model.Telephone</td>
+                            <td>@Model.Email</td>
+                            
+                        </tr>
+   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+
+
